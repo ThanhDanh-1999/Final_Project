@@ -38,7 +38,7 @@ int flag = 0;
 int fd[2], count_data = 0; // pipe
 
 struct GetCoords{
-  char ID[16] = "";
+  	char ID[16] = "";
 	char X[2] = "";
 	char Y[2] = "";
 };
@@ -236,13 +236,13 @@ void *Thread_Recv_Data(void *arg) {
 
       else {
         data_buff[valread] = '\0'; // add a null character to the end to make a string
-		    // get ID
+	// get ID
         int count = 22;
         char buff_ID[MAX];
         while (1) {
           buff_ID[count - 22] = data_buff[count];
           if (data_buff[count] == '\0') 
-			      break;
+		break;
           count++;
         }
         if (strncmp("Create sensor have ID:", data_buff, 22) == 0) {
@@ -286,7 +286,7 @@ void *Thread_Recv_Data(void *arg) {
         }  else if (strncmp("List all sensors now:", data_buff, 20) == 0) {
                   printf("\n%s\n", data_buff);
         } else if (strncmp("Sensor does not exist...", data_buff, 24) == 0)
-			            printf("\n%s", data_buff);
+		  printf("\n%s", data_buff);
         else
           writePipe();
 
@@ -325,7 +325,7 @@ void *Thread_Get_Coords(void *arg) {
                           }
         }
         bzero(temp, sizeof(temp));
-		    //printf("\nID= %s, X= %s, Y= %s\n",Coord[0].ID,Coord[0].X,Coord[0].Y);
+	//printf("\nID= %s, X= %s, Y= %s\n",Coord[0].ID,Coord[0].X,Coord[0].Y);
         // write to xml
         writexml();
         /*
